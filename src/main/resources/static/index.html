@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Student Manager Pro</title>
+</head>
+<body>
+
+<h2>Student Manager - Phong</h2>
+
+<input id="ten" placeholder="Tên">
+<input id="tuoi" placeholder="Tuổi">
+<input id="diem" placeholder="Điểm">
+<button onclick="addStudent()">Thêm</button>
+
+<table border="1">
+<thead>
+<tr><th>ID</th><th>Tên</th><th>Tuổi</th><th>Điểm</th><th>Action</th></tr>
+</thead>
+<tbody id="data"></tbody>
+</table>
+
+<script>
+async function loadData() {
+  let res = await fetch('/api/sinhvien');
+  let data = await res.json();
+  let html = "";
+  data.forEach(s => {
+    html += `<tr>
+      <td>${s.id}</td>
+      <td>${s.ten}</td>
+      <td>${s.tuoi}</td>
+      <td>${s.diem}</td>
+      <td><button onclick="deleteSV(${s.id})">Xóa</button></td>
+    </tr>`;
+  });
+  document.getElementById("data").innerHTML = html;
+}
+
+async function addStudent() {
+  let ten = document.getElementById("ten").value;
+  let tuoi = document.getElementById("tuoi").value;
+  let diem = document.getElementById("diem").value;
+
+  await fetch('/api/sinhvien', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({ten, tuoi, diem})
+  });
+
+  loadData();
+}
+
+async function deleteSV(id) {
+  await fetch('/api/sinhvien/' + id, {method:'DELETE'});
+  loadData();
+}
+
+loadData();
+</script>
+
+</body>
+</html>

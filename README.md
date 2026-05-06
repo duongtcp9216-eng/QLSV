@@ -1,16 +1,16 @@
-# 🎓 QLSV 
+# QLSV 
 
-## 📌 Mô tả
+##  Mô tả
 Ứng dụng quản lý sinh viên viết bằng Java.
 
-## ⚙️ Chức năng
+##  Chức năng
 - Thêm sinh viên
 - Sửa
 - Xóa
 - Hiển thị danh sách
 
-## ▶️ Cách chạy
+##  Cách chạy
 Chạy file Main.java
 
-## 👨‍💻 Sinh viên thực hiện
+##  Sinh viên thực hiện
 - Dương Trần Công Phong
